@@ -9,7 +9,7 @@ fi
 
 echo "installing nginx web server"
 apt update -y
-apt install nginxxx -y
+apt install nginx -y
 
 if  [ $? -ne 0 ]; then
     echo "installing Nginx ... Failure"
