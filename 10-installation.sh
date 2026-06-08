@@ -20,20 +20,20 @@ else
     echo "Installing Nginx ... Success"
 fi
 
-apt install mysql -y
+apt install mysql-server -y
 
 if [ $? -ne 0 ]; then
-    echo "Installing Nginx ... Failure"
+    echo "Installing MySQL ... Failure"
     exit 1
 else
-    echo "Installing Nginx ... Success"
+    echo "Installing MySQL ... Success"
 fi
 
 apt install nodejs -y
 
 if [ $? -ne 0 ]; then
-    echo "Installing Nginx ... Failure"
+    echo "Installing Node.js ... Failure"
     exit 1
 else
-    echo "Installing Nginx ... Success"
+    echo "Installing Node.js ... Success"
 fi
