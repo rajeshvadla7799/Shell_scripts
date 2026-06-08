@@ -3,18 +3,19 @@
 USERID=$(id -u)
 echo "USERID=$USERID"
 
-if [ $USERID -eq 0 ]; then
-    echo "please run this script as root user"
+if [ $USERID -ne 0 ]; then
+    echo "Please run this script as root user"
     exit 1
 fi
 
-echo "installing nginx web server"
+echo "Installing nginx web server"
+
 apt update -y
 apt install nginx -y
 
-if  [ $? -ne 0 ]; then
-    echo "installing Nginx ... Failure"
-     exit 1
+if [ $? -ne 0 ]; then
+    echo "Installing Nginx ... Failure"
+    exit 1
 else
-    echo "installing Nginx ... Success"
+    echo "Installing Nginx ... Success"
 fi
