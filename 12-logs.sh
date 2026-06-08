@@ -3,7 +3,6 @@
 USERID=$(id -u)
 LOGS_FOLDER="/var/log/Shell_scripts"
 LOGS_FILE="/var/log/Shell_scripts/$0.log"
-echo "USERID=$USERID"
 
 if [ $USERID -ne 0 ]; then
     echo "Please run this script as root user" | tee -a $LOGS_FILE
