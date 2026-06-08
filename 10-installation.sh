@@ -19,3 +19,21 @@ if [ $? -ne 0 ]; then
 else
     echo "Installing Nginx ... Success"
 fi
+
+apt install mysql -y
+
+if [ $? -ne 0 ]; then
+    echo "Installing Nginx ... Failure"
+    exit 1
+else
+    echo "Installing Nginx ... Success"
+fi
+
+apt install nodejs -y
+
+if [ $? -ne 0 ]; then
+    echo "Installing Nginx ... Failure"
+    exit 1
+else
+    echo "Installing Nginx ... Success"
+fi
