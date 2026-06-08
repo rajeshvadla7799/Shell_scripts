@@ -17,7 +17,7 @@ VALIDATE () {
     fi
 }
 
-apt install nginxx -y
+apt install nginx -y
 VALIDATE $? "Installing Nginx"
 
 apt install mysql-server -y
