@@ -6,5 +6,5 @@
 
 for i in {1..100}
 do
-    echo "iteration number $i"
+    echo $i
 done
