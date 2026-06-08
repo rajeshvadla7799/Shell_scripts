@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NUMBER=25   
+NUMBER=19 
 
 # -gt -> greater than
 # -lt -> less than
