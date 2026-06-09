@@ -1,7 +1,7 @@
 #!/bin/bash
 
-set -e # this will be checking for errors, if errors it will exit
-trap "echo 'Error occurred at line number $LINENO command: $BASH_COMMAND'" ERR
+set -e
+trap 'echo "Error occurred at line number $LINENO command: $BASH_COMMAND"' ERR
 USERID=$(id -u)
 LOGS_FOLDER="/var/log/Shell_scripts"
 LOGS_FILE="/var/log/Shell_scripts/$0.log"
@@ -13,7 +13,7 @@ M="\e[35m"
 N="\e[0m"
 
 if [ $USERID -ne 0 ]; then
-    echo "$R Please run this script as root user $N" | tee -a $LOGS_FILE
+    echo -e "$R Please run this script as root user $N" | tee -a $LOGS_FILE
     exit 1
 fi
 
