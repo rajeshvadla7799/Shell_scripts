@@ -1,32 +1,32 @@
 #!/bin/bash
 
 set -e
-trap 'echo "Error occurred at line number $LINENO command: $BASH_COMMAND"' ERR
-USERID=$(id -u)
+
 LOGS_FOLDER="/var/log/Shell_scripts"
-LOGS_FILE="/var/log/Shell_scripts/$0.log"
-R="\e[31m"
-G="\e[32m"
-Y="\e[33m"
-B="\e[34m"
-M="\e[35m"
-N="\e[0m"
+mkdir -p $LOGS_FOLDER
+
+LOGS_FILE="$LOGS_FOLDER/20-trap.log"
+
+trap 'echo "Error occurred at line $LINENO: $BASH_COMMAND" | tee -a $LOGS_FILE' ERR
+
+USERID=$(id -u)
 
 if [ $USERID -ne 0 ]; then
-    echo -e "$R Please run this script as root user $N" | tee -a $LOGS_FILE
+    echo "Please run as root user"
     exit 1
 fi
 
-mkdir -p $LOGS_FOLDER
-
-for pachage in $@ # sudo sh 14-loops.sh nginx mysql-server nodejs
+for package in "$@"
 do
-    apt list installed $pachage &>>$LOGS_FILE
-    if [ $? -ne 0 ]; then
-        echo -e "$Y $pachage is not installed, installing Now $N"
-        apt install $pachage -y &>>$LOGS_FILE
+    echo "Processing: $package" | tee -a $LOGS_FILE
 
+    if ! dpkg -s "$package" &>>$LOGS_FILE; then
+        echo "$package is not installed, installing now" | tee -a $LOGS_FILE
+
+        apt install "$package" -y &>>$LOGS_FILE
+
+        echo "$package installation SUCCESS" | tee -a $LOGS_FILE
     else
-        echo -e " $pachage is already installed, $G skipping installation $N"
+        echo "$package already installed, skipping" | tee -a $LOGS_FILE
     fi
 done
