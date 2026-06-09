@@ -34,6 +34,6 @@ do
         apt install $pachage -y &>>$LOGS_FILE
         VALIDATE $? "$pachage installation"
     else
-        echo -e "$G $pachage is already installed, skipping installation $N"
+        echo "$G $pachage is already installed, skipping installation $N"
     fi
 done
